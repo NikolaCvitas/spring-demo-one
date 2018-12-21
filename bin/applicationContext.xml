@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context 
+	   http://www.springframework.org/schema/context/spring-context.xsd">
+	   					   
+	   					   
+	   	   <context:property-placeholder location="classpath:database.properties"/>
+
+    <bean id="myCoach"
+          class="hr.luv2.springdemo.TrackCoach">
+    </bean>
+    
+        <bean id="sportService"
+          class="hr.luv2.springdemo.services.SportService">
+          <property name="email" value="nikola@gmail.com"/>
+          <property name="teamName" value="${cricket.email}"/>
+    </bean>
+    
+    
+        <bean id="myRowingCoach"
+          class="hr.luv2.springdemo.RowingCoach">
+          <constructor-arg ref="sportService" />
+    </bean>
+    
+            <bean id="myCricketCoach"
+          class="hr.luv2.springdemo.CricketCoach">
+          
+          <constructor-arg ref="sportService" />
+          
+                  
+    </bean>
+    
+    <bean id="database" 
+    class="hr.luv2.springdemo.database.Database" >
+    <property name="schema" value="${database.schema}"/>
+    </bean>
+
+</beans>
